@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
+import { DB_CONNECTION_STRING } from "../constants";
 import logger from "./logger";
-const DB_CONNECTION_STRING =
-  process.env.DB_CONNECTION_STRING || "mongodb://localhost/streameo_app";
 
 export async function connectToDatabase() {
   try {

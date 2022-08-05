@@ -2,12 +2,14 @@ import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import helmet from "helmet";
+import dotenv from "dotenv";
+dotenv.config();
 import { connectToDatabase, disconnectFromDatabase } from "./utils/database";
 import logger from "./utils/logger";
-import { CORS_ORIGIN } from "./constants";
+import { CORS_ORIGIN, PORT } from "./constants";
 import userRoute from "./modules/user/user.route";
+import authRoute from "./modules/auth/auth.route";
 
-const PORT = process.env.PORT || 5000;
 const app = express();
 
 app.use(cookieParser());
@@ -21,6 +23,7 @@ app.use(
 app.use(helmet());
 
 app.use("/api/users", userRoute);
+app.use("/api/auth", authRoute);
 
 const server = app.listen(PORT, async () => {
   await connectToDatabase();
