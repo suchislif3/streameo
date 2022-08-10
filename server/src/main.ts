@@ -9,6 +9,7 @@ import logger from "./utils/logger";
 import { CORS_ORIGIN, PORT } from "./constants";
 import userRoute from "./modules/user/user.route";
 import authRoute from "./modules/auth/auth.route";
+import videoRoute from "./modules/video/video.route";
 import deserializeUser from "./middleware/deserializeUser";
 
 const app = express();
@@ -26,6 +27,7 @@ app.use(deserializeUser);
 
 app.use("/api/users", userRoute);
 app.use("/api/auth", authRoute);
+app.use("/api/videos", videoRoute);
 
 const server = app.listen(PORT, async () => {
   await connectToDatabase();

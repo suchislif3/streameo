@@ -15,7 +15,7 @@ function deserializeUser(req: Request, res: Response, next: NextFunction) {
   const decoded = verifyJwt(accessToken);
 
   if (decoded) {
-    res.locals.user = decoded; // could alseo be req.user
+    res.locals.user = decoded;
   }
 
   return next();
